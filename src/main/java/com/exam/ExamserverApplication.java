@@ -1,18 +1,10 @@
 package com.exam;
 
-import com.exam.model.Role;
-import com.exam.model.User;
-import com.exam.model.UserRole;
-import com.exam.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-import java.util.HashSet;
-import java.util.Set;
-
-@SpringBootApplication
+@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class ExamserverApplication  {
 
 

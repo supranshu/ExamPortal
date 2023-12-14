@@ -4,7 +4,6 @@ package com.exam.controller;
 import com.exam.model.Role;
 import com.exam.model.User;
 import com.exam.model.UserRole;
-import com.exam.repo.UserRepository;
 import com.exam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +13,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
@@ -21,9 +21,12 @@ public class UserController {
 
 
 
+
+
     //creating user
     @PostMapping("/")
     public User createUser(@RequestBody User user) throws Exception {
+        user.setProfile("default.jpg");
         Set<UserRole> roles=new HashSet<>();
         Role role=new Role();
         role.setRoleId(45);
@@ -40,6 +43,15 @@ public class UserController {
     @GetMapping("/{username}")
     public User getUser(@PathVariable("username") String username){
 
+        User user=this.userService.getUser(username);
+        Set<UserRole> roles=user.getUserRoles();
+        if(roles.contains("ADMIN"))
+        {
+
+        }else {
+
+        }
+
         return this.userService.getUser(username);
     }
 
@@ -50,5 +62,5 @@ public class UserController {
     }
 
     //update user
-    
+
 }
