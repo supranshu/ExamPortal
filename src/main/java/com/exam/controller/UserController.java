@@ -43,15 +43,6 @@ public class UserController {
     @GetMapping("/{username}")
     public User getUser(@PathVariable("username") String username){
 
-        User user=this.userService.getUser(username);
-        Set<UserRole> roles=user.getUserRoles();
-        if(roles.contains("ADMIN"))
-        {
-
-        }else {
-
-        }
-
         return this.userService.getUser(username);
     }
 
@@ -61,6 +52,6 @@ public class UserController {
         this.userService.deleteUser(userId);
     }
 
-    //update user
+
 
 }
